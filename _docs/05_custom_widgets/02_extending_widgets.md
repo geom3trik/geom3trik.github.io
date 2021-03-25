@@ -37,10 +37,10 @@ impl MyExtendedButton {
 }
 ```
 
-## Step 3 - Implement the BuildHandler trait
-Inside the `on_build()` method of the `BuildHandler` trait implementation we manually call the `on_build()` method of the contained button using the `entity` id. This causes the entity to become a button, effectively inheriting the buttons data. 
+## Step 3 - Implement the Widget trait
+Inside the `on_build()` method of the `Widget` trait implementation we manually call the `on_build()` method of the contained button using the `entity` id. This causes the entity to become a button, effectively inheriting the buttons data. 
 ```rs
-impl BuildHandler for MyExtendedButton {
+impl Widget for MyExtendedButton {
     type Ret = Entity;
         fn on_build(&mut self, state: &mut State, entity: Entity) -> Self::Ret {
         
@@ -49,31 +49,30 @@ impl BuildHandler for MyExtendedButton {
 }
 ```
 
-## Step 4 - Implement the EventHandler trait
-Inside the `on_event()` method of the `EventHandler` trait implementation we manually call the `on_event` method of the contained button to 'inherit' the buttons' functionality. Now when a user clicks on an instance of `MyExtendedButton` the `on_press` event (if there is one) will be emitted. After this we extend the functionality by handling `WindowEvent::MouseOver` event to emit the contained `on_hover` event.
+Inside the `on_event()` method of the `Widget` trait implementation we manually call the `on_event` method of the contained button to 'inherit' the buttons' functionality. Now when a user clicks on an instance of `MyExtendedButton` the `on_press` event (if there is one) will be emitted. After this we extend the functionality by handling `WindowEvent::MouseOver` event to emit the contained `on_hover` event.
 ```rs
-impl EventHandler for MyExtendedButton {
-    fn on_event(&mut self, state: &mut State, entity: Entity, event: &mut Event) -> bool {
-        
-        // Call on_event of contained button to 'inherit' button functionality
-        self.button.on_event(state, entity, event);
-        
-        // Handle MouseOver event to emit the contained on_hover event
-        if let Some(window_event) = event.message.downcast::<WindowEvent>() {
-            match window_event {
-                WindowEvent::MouseOver => {
-                    if event.target == entity {
-                        if let Some(on_hover) = self.on_hover.clone() {
-                            on_hover.origin = entity;
-                            state.insert_event(on_hover);
-                        }
+...
+fn on_event(&mut self, state: &mut State, entity: Entity, event: &mut Event) -> bool {
+    
+    // Call on_event of contained button to 'inherit' button functionality
+    self.button.on_event(state, entity, event);
+    
+    // Handle MouseOver event to emit the contained on_hover event
+    if let Some(window_event) = event.message.downcast::<WindowEvent>() {
+        match window_event {
+            WindowEvent::MouseOver => {
+                if event.target == entity {
+                    if let Some(on_hover) = self.on_hover.clone() {
+                        on_hover.origin = entity;
+                        state.insert_event(on_hover);
                     }
                 }
-
-                _=> {}
             }
+
+            _=> {}
         }
-        false
     }
+    false
 }
+...
 ```
