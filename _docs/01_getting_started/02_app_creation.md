@@ -6,16 +6,27 @@ order: 2
 ---
 ---
 
-The simplest tuix app looks like this:
+# A Basic Tuix App
+
+The most basic tuix app looks like this:
+
 ```rs
 use tuix::*;
 
 fn main() {
-    let mut app = Application::new(|win_desc, state, window| {
-        win_desc
-    });
+    let mut app = Application::new(|state, window| {});
 
     app.run();
 }
 ```
+
+Currebtly the closure in `new()` is empty, but this is where we will build our application by adding widgets.
+
+Running this code will produce an empty grey window with a width of 800 pixels and a height of 600 pixels. This isn't very interesting, so in the next section we'll cover changing window properties like size, title and icon.
+
+For now let's go over the input arguments to closure:
+
+ - `state` - This is a mutable reference to the UI `State`. `State` represents the 'global' data of the elements in a gui application, such as widget positions and style. For this reason, a mutable reference to state is passed around when building entities, handling events, and drawing.
+
+ - `window` - This is a mutable reference to a `WindowBuilder`. With this we can modify the window properties.
 
