@@ -45,6 +45,6 @@ Running this code produces:
 
 ![adding_widgets_01](../../images/composing_widgets_01.png)
 
-Composing widgets forms a tree, where each widget has a single parent and possibly multiple children. In tuix this tree is called the `Hierarchy`, and can be found in `State`. This hierarchy is used to propagate events as well as to draw the elements in the correct order.
+Composing widgets forms a tree, where each widget has a single parent and zero or more children. In tuix this tree is called the `Hierarchy`, and can be found in `State`. This hierarchy is used to propagate events as well as to draw the elements in the correct order.
 
 We'll cover the `Hierarchy` in more detail when we start to handle events and custom drawing a little later. In the next section we'll cover the basics of widget layout.

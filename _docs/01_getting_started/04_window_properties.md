@@ -26,7 +26,7 @@ fn main() {
 }
 ```
 
-## List of Properties
+Below is a list of the window properties that can currently be modified:
 
 #### Window Title
 Sets the title of the window.

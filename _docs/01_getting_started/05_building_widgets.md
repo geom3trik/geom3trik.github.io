@@ -28,17 +28,17 @@ An `Element` widget is the simplest built-in widget that tuix has. It contains n
 
 To add the element widget we first create a new instance with `Element::new()`, and then build the widget into the app with `.build(state, window.entity(), |builder| builder)`. 
 
-- The first argument to this function is the mutable reference to State from the application closure. 
+- The first argument to this function is the mutable reference to `State` from the application closure. 
 
-- The second argument is the entity id of the parent widget, in this case the window widget, which we get using `window.entity()`. Each widget has an `Entity` id which can be used to get and set various widget properties stored in `State`.
+- The second argument is the entity id of the parent widget, in this case the window widget, which we get by calling `window.entity()`. Each widget has an `Entity` id which can be used to get and set various widget properties stored in `State`.
 
-- The third argument is a closure which provides us with a builder we can use to set style properties on the newly created widget. 
+- The third argument is a closure which provides us with a builder we can use to set style properties of the newly created widget.
 
-However, if you build and run this code you will still see an empty window. 
+However, if you build and run this code you will still see an empty window.
 
 ![adding_widgets_01](../../images/adding_widgets_01.png)
 
-This is because the element widget has no built-in styling. To see the button, we can add a width, height, and background color using the builder:
+This is because the `Element` widget has no built-in styling. To see the element, we can add a width, height, and background color using the builder:
 
 ```rs
 use tuix::*;
@@ -61,6 +61,6 @@ fn main() {
 }
 ```
 
-This will produce a nice orange button in the top left corner of the window with a width of 100 pixels and a height of 30 pixels. In the next section we'll look at how to compose widgets together by adding a button to our element widget.
+This will produce a nice orange widget in the top left corner of the window with a width of 100 pixels and a height of 30 pixels. In the next section we'll look at how to compose widgets together by adding a button to our element widget.
 
 ![adding_widgets_02](../../images/adding_widgets_02.png)
