@@ -26,7 +26,7 @@ Running this code will produce an empty grey window with a width of 800 pixels a
 
 For now let's go over the input arguments to closure:
 
- - `state` - This is a mutable reference to the UI `State`. `State` represents the 'global' data of the elements in a gui application, such as widget positions and style. For this reason, a mutable reference to state is passed around when building entities, handling events, and drawing.
+ - `state` - This is a mutable reference to the UI `State`, which represents the 'global' data of the elements in a gui application, such as widget positions and style. A mutable reference to state is passed around when building widgets, handling events, and drawing widgets.
 
  - `window` - This is a mutable reference to a `WindowBuilder`. With this we can modify the window properties.
 

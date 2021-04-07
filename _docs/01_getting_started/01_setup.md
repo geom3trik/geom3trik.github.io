@@ -22,4 +22,5 @@ This will create a new directory called `my_tuix_app` which will contain the sou
 tuix = {git = "https://github.com/geom3trik/tuix", branch = "main"}
 ```
 
+Also inside the `my_tuix_app` directory should be a sub-directory called `src`, and inside this sub-directory there should be a file called `main.rs`. This is the starting point for a Rust application and where we will start writing our first tuix application.
 
